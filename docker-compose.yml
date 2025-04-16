@@ -1,0 +1,14 @@
+services:
+  compile:
+    image: golang:1.24-bullseye
+    volumes:
+      - .:/app
+    working_dir: /app
+    user: ${CURRENT_UID}
+    command: sh -c "go build -buildvcs=false ."
+    environment:
+      - CGO_ENABLED=0
+      - GOOS=linux
+      - GOARCH=amd64
+      - GOCACHE=/tmp/.cache/go-build
+      - GOMODCACHE=/tmp/.cache/go-mod
